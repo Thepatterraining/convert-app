@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.thepatter.convertutil.Service.IConvertService;
@@ -26,14 +27,19 @@ public class XmlController {
     private TextArea inputNum;
 
     @FXML
+    private TextField inputChart;
+
+    @FXML
     private TextArea outputNum;
 
 
     @FXML
     protected void onXmlStrChecker() {
         IXmlCheckerService service = new XmlCheckerService();
-        infoLabel.setText("xml str success!");
-        outputNum.setText(service.xmlChecker(inputNum.getText()));
+        String str = service.xmlChecker(inputNum.getText(), inputChart.getText());
+        String str2 = service.checkRes() ? "success" : "找到空格或\\n";
+        infoLabel.setText("xml file " + str2 +" !");
+        outputNum.setText(str);
     }
 
     @FXML
@@ -47,8 +53,10 @@ public class XmlController {
             System.out.println("Selected file: " + file.getAbsolutePath());
         }
         IXmlCheckerService service = new XmlCheckerService();
-        infoLabel.setText("xml file success!");
-        outputNum.setText(service.xmlChecker(file));
+        String str = service.xmlChecker(file, inputChart.getText());
+        String str2 = service.checkRes() ? "success" : "找到空格或\\n";
+        infoLabel.setText("xml file " + str2 +" !");
+        outputNum.setText(str);
     }
 
     @FXML

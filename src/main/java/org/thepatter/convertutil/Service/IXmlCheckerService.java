@@ -4,7 +4,9 @@ import java.io.File;
 
 public interface IXmlCheckerService {
 
-    public String xmlChecker(String str);
+    public String xmlChecker(String str, String chart);
 
-    public String xmlChecker(File file);
+    public String xmlChecker(File file, String chart);
+
+    public Boolean checkRes();
 }

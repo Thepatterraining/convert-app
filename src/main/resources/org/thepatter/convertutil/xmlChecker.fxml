@@ -8,6 +8,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.thepatter.convertutil.XmlController">
     <padding>
@@ -15,6 +16,7 @@
     </padding>
 
     <Label fx:id="welcomeText" text="请输入xml字符串或者选择upload file上传xml文件" />
+    <TextField fx:id="inputChart" promptText="请输入字符集" text="GB2312"/>
     <TextArea fx:id="inputNum" maxHeight="Infinity" maxWidth="300" promptText="请输入xml字符串" prefRowCount="50"></TextArea>
     <HBox spacing="20">
         <Button text="xml str checker" onAction="#onXmlStrChecker"/>

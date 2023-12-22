@@ -2,18 +2,20 @@ package org.thepatter.convertutil.Service.Impl;
 
 import org.thepatter.convertutil.Service.IXmlCheckerService;
 import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.ByteArrayInputStream;
-import java.io.File;
+import java.io.*;
 
 public class XmlCheckerService implements IXmlCheckerService {
 
+    private CustomHandler handler = new CustomHandler();
+
     @Override
-    public String xmlChecker(String str) {
+    public String xmlChecker(String str, String chart) {
         // 创建SAXParser实例
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         SAXParser saxParser =null;
@@ -21,18 +23,16 @@ public class XmlCheckerService implements IXmlCheckerService {
             saxParser = saxParserFactory.newSAXParser();
         } catch (Exception e){
             System.out.println("xml解析错误");
+            return e.getMessage();
         }
-
-
-        // 创建自定义的Handler
-        CustomHandler handler = new CustomHandler();
 
         // 解析XML文件(顺带里面包含了打印xml文件的内容)
         try{
-            saxParser.parse(new ByteArrayInputStream(str.getBytes("UTF-8")), handler);
+            saxParser.parse(new ByteArrayInputStream(str.getBytes(chart)), handler);
         }catch (Exception e) {
             System.out.println("XML文件格式不正确");
             System.out.println(e);
+            return e.getMessage();
         }
 
         System.out.println("xml文件内容为："+handler.getXmlContent());
@@ -40,7 +40,12 @@ public class XmlCheckerService implements IXmlCheckerService {
     }
 
     @Override
-    public String xmlChecker(File file) {
+    public Boolean checkRes() {
+        return handler.getCheckRes();
+    }
+
+    @Override
+    public String xmlChecker(File file, String chart) {
         // 创建SAXParser实例
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         SAXParser saxParser =null;
@@ -48,18 +53,19 @@ public class XmlCheckerService implements IXmlCheckerService {
             saxParser = saxParserFactory.newSAXParser();
         } catch (Exception e){
             System.out.println("xml解析错误");
+            return e.getMessage();
         }
-
-
-        // 创建自定义的Handler
-        CustomHandler handler = new CustomHandler();
 
         // 解析XML文件(顺带里面包含了打印xml文件的内容)
         try{
-            saxParser.parse(file, handler);
+            InputStream inputStream = new FileInputStream(file);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, chart);
+            InputSource inputSource = new InputSource(inputStreamReader);
+            saxParser.parse(inputSource, handler);
         }catch (Exception e) {
             System.out.println("XML文件格式不正确");
             System.out.println(e);
+            return e.getMessage();
         }
 
         System.out.println("xml文件内容为："+handler.getXmlContent());
@@ -70,9 +76,13 @@ public class XmlCheckerService implements IXmlCheckerService {
         private StringBuilder xmlContent = new StringBuilder();
         private String currentElement;
 
+        private Boolean checkRes = true;
+
         public String getXmlContent() {
             return xmlContent.toString();
         }
+
+        public Boolean getCheckRes() {return checkRes;}
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -103,11 +113,13 @@ public class XmlCheckerService implements IXmlCheckerService {
 
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
+            System.out.println("characters");
             System.out.println(new String(ch, start, length));
             String currentContent = new String(ch, start, length);
             if (currentContent.contains(" ") || currentContent.contains("\\n")) {
                 System.out.println("包含空格或\\n");
                 xmlContent.append("包含空格或\\n");
+                checkRes = false;
             } else {
                 System.out.println("不包含空格或\\n");
                 xmlContent.append(ch, start, length);
