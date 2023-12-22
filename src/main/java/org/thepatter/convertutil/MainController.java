@@ -25,7 +25,7 @@ public class MainController {
     @FXML
     protected void onConvertClick(ActionEvent event) throws IOException {
         Parent load = FXMLLoader.load(getClass().getResource("convert.fxml"));
-        Scene scene = new Scene(load);
+        Scene scene = new Scene(load,500, 500);
         Button button = (Button) event.getSource();
         Stage stage = (Stage)button.getScene().getWindow();
         stage.setScene(scene);
@@ -34,7 +34,7 @@ public class MainController {
     @FXML
     protected void onXmlClick(ActionEvent event) throws IOException {
         Parent load = FXMLLoader.load(getClass().getResource("xmlChecker.fxml"));
-        Scene scene = new Scene(load);
+        Scene scene = new Scene(load,500, 500);
         Button button = (Button) event.getSource();
         Stage stage = (Stage)button.getScene().getWindow();
         stage.setScene(scene);

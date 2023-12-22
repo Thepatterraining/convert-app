@@ -54,7 +54,7 @@ public class XmlController {
     @FXML
     protected void onHomeClick(ActionEvent event) throws IOException {
         Parent load = FXMLLoader.load(getClass().getResource("main.fxml"));
-        Scene scene = new Scene(load,320, 240);
+        Scene scene = new Scene(load,500, 500);
         Button button = (Button) event.getSource();
         Stage stage = (Stage)button.getScene().getWindow();
         stage.setScene(scene);
