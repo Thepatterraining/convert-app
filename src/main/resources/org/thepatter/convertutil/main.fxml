@@ -9,10 +9,6 @@
 <?import javafx.scene.control.TextArea?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.thepatter.convertutil.MainController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Button text="convert number" onAction="#onConvertClick"/>
-    <Button text="xml checker" onAction="#onXmlClick"/>
+    <Button fx:id="convertBtn" text="convert number" onAction="#onConvertClick"/>
+    <Button fx:id="xmlBtn" text="xml checker" onAction="#onXmlClick"/>
 </VBox>

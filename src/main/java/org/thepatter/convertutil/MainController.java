@@ -1,35 +1,42 @@
 package org.thepatter.convertutil;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 import org.thepatter.convertutil.Service.IConvertService;
 import org.thepatter.convertutil.Service.Impl.ConvertService;
 
+import java.io.IOException;
+
 public class MainController {
-    @FXML
-    private Label infoLabel;
 
     @FXML
-    private TextArea inputNum;
+    private Button convertBtn;
 
     @FXML
-    private TextArea outputNum;
-
+    private Button xmlBtn;
 
     @FXML
-    protected void onConvertClick() {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        setScene();
+    protected void onConvertClick(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("convert.fxml"));
+        Scene scene = new Scene(load);
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage)button.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
-    protected void onXmlClick() {
-        IConvertService convertService = new ConvertService();
-        infoLabel.setText("convert success!");
-        outputNum.setText(convertService.convert(inputNum.getText()));
+    protected void onXmlClick(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("xmlChecker.fxml"));
+        Scene scene = new Scene(load);
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage)button.getScene().getWindow();
+        stage.setScene(scene);
     }
 }

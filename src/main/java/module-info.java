@@ -8,6 +8,7 @@ module org.thepatter.convertutil {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires hutool.all;
+    requires java.xml;
 
     opens org.thepatter.convertutil to javafx.fxml;
     exports org.thepatter.convertutil;
