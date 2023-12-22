@@ -8,6 +8,15 @@
 
 安装步骤
 
+```
+git clone git@github.com:Thepatterraining/convert-app.git
+cd convert-app
+```
+
 生成可执行文件步骤
 
+```
+mvn clean package
+mvn package
+```
 

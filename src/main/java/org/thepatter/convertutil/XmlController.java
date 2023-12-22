@@ -2,6 +2,9 @@ package org.thepatter.convertutil;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -13,6 +16,7 @@ import org.thepatter.convertutil.Service.Impl.ConvertService;
 import org.thepatter.convertutil.Service.Impl.XmlCheckerService;
 
 import java.io.File;
+import java.io.IOException;
 
 public class XmlController {
     @FXML
@@ -45,5 +49,14 @@ public class XmlController {
         IXmlCheckerService service = new XmlCheckerService();
         infoLabel.setText("xml file success!");
         outputNum.setText(service.xmlChecker(file));
+    }
+
+    @FXML
+    protected void onHomeClick(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Scene scene = new Scene(load,320, 240);
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage)button.getScene().getWindow();
+        stage.setScene(scene);
     }
 }

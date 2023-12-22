@@ -17,6 +17,7 @@
     <TextArea fx:id="inputNum" maxHeight="Infinity" maxWidth="300" promptText="请输入xml字符串" prefRowCount="50"></TextArea>
     <Button text="xmlStrChecker" onAction="#onXmlStrChecker"/>
     <Button text="upload file" onAction="#onXmlFileChecker"/>
+    <Button text="home" onAction="#onHomeClick"/>
     <Label fx:id="infoLabel" />
     <TextArea fx:id="outputNum" maxHeight="Infinity" maxWidth="300" prefRowCount="50"></TextArea>
 </VBox>

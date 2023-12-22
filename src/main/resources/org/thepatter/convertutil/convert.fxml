@@ -16,6 +16,7 @@
     <Label fx:id="welcomeText" text="请输入编码" />
     <TextArea fx:id="inputNum" maxHeight="Infinity" maxWidth="300" promptText="请输入编码" prefRowCount="50"></TextArea>
     <Button text="convert" onAction="#onHelloButtonClick"/>
+    <Button text="home" onAction="#onHomeClick"/>
     <Label fx:id="infoLabel" />
     <TextArea fx:id="outputNum" maxHeight="Infinity" maxWidth="300" prefRowCount="50"></TextArea>
 </VBox>
