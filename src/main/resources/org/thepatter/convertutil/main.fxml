@@ -8,14 +8,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.TextArea?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.thepatter.convertutil.HelloController">
+      fx:controller="org.thepatter.convertutil.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText" text="请输入编码" />
-    <TextArea fx:id="inputNum" maxHeight="Infinity" maxWidth="300" promptText="请输入编码" prefRowCount="50"></TextArea>
-    <Button text="convert" onAction="#onHelloButtonClick"/>
-    <Label fx:id="infoLabel" />
-    <TextArea fx:id="outputNum" maxHeight="Infinity" maxWidth="300" prefRowCount="50"></TextArea>
+    <Button text="convert number" onAction="#onConvertClick"/>
+    <Button text="xml checker" onAction="#onXmlClick"/>
 </VBox>
