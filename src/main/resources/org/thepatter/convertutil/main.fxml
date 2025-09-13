@@ -11,4 +11,5 @@
       fx:controller="org.thepatter.convertutil.MainController">
     <Button fx:id="convertBtn" text="convert number" onAction="#onConvertClick"/>
     <Button fx:id="xmlBtn" text="xml checker" onAction="#onXmlClick"/>
+    <Button fx:id="paterrnBtn" text="正则查询" onAction="#onPaterrnClick"/>
 </VBox>

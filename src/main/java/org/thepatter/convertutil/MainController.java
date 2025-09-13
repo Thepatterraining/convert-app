@@ -39,4 +39,13 @@ public class MainController {
         Stage stage = (Stage)button.getScene().getWindow();
         stage.setScene(scene);
     }
+
+    @FXML
+    protected void onPaterrnClick(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("paterrn.fxml"));
+        Scene scene = new Scene(load,500, 500);
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage)button.getScene().getWindow();
+        stage.setScene(scene);
+    }
 }
